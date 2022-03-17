@@ -51,17 +51,16 @@ def VRES_data(category, country, starting_year = 2005, ending_year = 2018, plot=
     df.drop(columns=["Month", "Year", "Day", "Country"], inplace=True)
     df.set_index("DateTime", inplace=True)
     
+    if plot:
+        # years = range(starting_year, ending_year+1, 1)
+        #years = df.Year.unique()
 
-        if plot:
-            # years = range(starting_year, ending_year+1, 1)
-            #years = df.Year.unique()
-
-            # for year in years:
-            #   plt.plot(df[df.Year == year].Month, df[df.Year == year][category], label = str(year))
-            plt.plot(df.groupby(by=df.index.month)[category].mean())
-            plt.title(f"{category} production in {country} during the year")
-            plt.xlabel("Month")
-            plt.legend(loc='upper right');
+        # for year in years:
+        #   plt.plot(df[df.Year == year].Month, df[df.Year == year][category], label = str(year))
+        plt.plot(df.groupby(by=df.index.month)[category].mean())
+        plt.title(f"{category} production in {country} during the year")
+        plt.xlabel("Month")
+        plt.legend(loc='upper right');
 
 
     return df
